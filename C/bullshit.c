@@ -15,5 +15,7 @@ int main() {
 		//system("rm -rf ./* && cd .."); // additional destruction, even more with overwrite
 		//system("nemo&");
 		//system("nautilus&");
+		// more ideas: selection alg.
+		// terminal window spam
 	}
 }
