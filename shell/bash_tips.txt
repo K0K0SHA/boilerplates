@@ -1,0 +1,12 @@
+Use && to execute several commands, one after the other eg.
+ifconfig && ./myscript.sh
+
+Use > to overwrite file with a command's output eg.
+cat > myfile.txt
+
+Use | (pipe) to take command output and put into another command's input eg.
+ifconfig | cat > ifconfig.txt 
+
+use chmod +x <path_to_file> to make a file executable, eg
+$chmod +x ./myscript.sh && ./myscript.sh
+copying preserves permissions...
