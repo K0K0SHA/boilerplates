@@ -33,4 +33,4 @@ def execute(cmd):
 ###############################################################
 # HOW TO USE
 # prototype phase: copy/paste def into your program, before any
-# references to it. 
+# references to it. Alternatively, include this file in Python.
