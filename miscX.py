@@ -236,7 +236,7 @@ class miscX:
 	def select_from_list(list):
 		try:
 			if (list == None):
-				return None # error
+				return None # error condition
 			l = list[0]
 			# UNDER CONSTRUCTION
 
@@ -280,12 +280,18 @@ class miscX:
 
 	# uses hwinfo for info (other options are ifconfig, iwconfig, and airmon-ng)
 	# refer to http://www.linuxintro.org/wiki/Hwinfo
+	#
 	# sample hwinfo --netcard --short output:
 	# 
 	#network:                                                        
 	#wlp5s0mon            Intel Dual Band Wireless-AC 8265
 	#enp4s0               Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller
 	#wlx00c0cab14a64      MediaTek Wireless
+	
+	# Notice the first line in the output above; the one starting with network:
+	# The first line should be removed when hwinfo output gets piped
+	# This is automated in the get_NIC_list() function
+	
 	def get_NIC_list():
 		try:
 			checkroot()
@@ -311,6 +317,7 @@ class miscX:
 		except Exception as E:
 			print("Error in user_select_NIC()")
 			print(E)
+			return None # error condition
 			
 	def show_network_drivers():
 		try:
@@ -324,12 +331,12 @@ class miscX:
 	def amon():
 		if !checkroot():
 			print("root required for amon!")
-			exit()
-		user_select_NIC()
-		list =  read_file_lines_as_list("./.netcard.info"):
-		if list:
-			selection = select_from_list(list)
-			commandstr = ""
+			#exit()
+			return -1
+		nic = user_select_NIC()
+	
+		if nic:
+			# rename interface to amon
 		else:
 			return -1
 
