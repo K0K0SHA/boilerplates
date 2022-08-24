@@ -286,11 +286,15 @@ class miscX:
 	#network:                                                        
 	#wlp5s0mon            Intel Dual Band Wireless-AC 8265
 	#enp4s0               Realtek RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller
-	#wlx00c0cab14a64      MediaTek Wireless
+	#wlx00c69420          MediaTek Wireless
 	
 	# Notice the first line in the output above; the one starting with network:
 	# The first line should be removed when hwinfo output gets piped
 	# This is automated in the get_NIC_list() function
+	
+	def rename_NIC(old, new):
+		if !checkroot():
+			return false# under construction
 	
 	def get_NIC_list():
 		try:
@@ -336,7 +340,7 @@ class miscX:
 		nic = user_select_NIC()
 	
 		if nic:
-			# rename interface to amon
+			rename_nic(nic, "amon") # todo: MAC randomizer toggle
 		else:
 			return -1
 
