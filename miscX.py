@@ -250,14 +250,9 @@ class miscX:
 	# Guardrail functions to prevent accidental OS destruction. Allows coder to choose target OS.
 
 	# FUNCTION NAME: exclude_windows()
-	# makes sure program is not running on Windows (please read the comments)
-	# This function is for the safety of Windows users. miscX is designed to be cross-platform, but it can also break your OS.
-	# Sometimes, a program is designed in order to run using GNU/Linux. 
-	# Such a program could potentially work on Mac and Android, not to mention your distro eg. Ubuntu.
-	# However, Windows is too different from Linux. Even if your Windows has eg. BusyBox with GNU installed,
-	# Windows still uses backslashes for filepaths, and an entirely different syntax. 
-	# Use this function when you want your code to be runnable on anything except for Windows.
-	# Maybe you're like me, and you have a bash script which works on Ubuntu, Android, and Mac.
+	# makes sure program is not running on Windows
+	# This function is mostly for the safety of Windows users.
+	# related to get_os_details()
 	def exclude_windows():
 		if (platform.system() == 'Windows'):
 			print("Cannot run this script on Windows!")
@@ -294,11 +289,13 @@ class miscX:
 	def get_NIC_list():
 		try:
 			checkroot()
-			exclude_windows() # hwinfo probably doesn't work on Windows
+			if (linux_only() == False):
+				print("Error, suitable environment is not found. Run on Linux!")
+				return -1 # hwinfo probably doesn't work on Windows
 			if (!check_install(hwinfo)):
 				print("getNIC() error: hwinfo not installed")
 				return -1
-			commandstr = "hwinfo --netcard --short > ./.netcard.info"
+			commandstr = "hwinfo --netcard --short > ./.netcard.info && sed -i '1d' ./.netcard.info" # removes garbage first line
 			returncode = verbosity(commandstr)
 			return returncode
 		except Exception as E:
@@ -306,14 +303,29 @@ class miscX:
 			print(E)
 			return -1
 
+	def user_select_NIC():
+		try:
+			nics = get_NIC_list()
+			selected_NIC = select_from_list(nics)
+			return selected_NIC # should return the name of the selected network interface card
+		except Exception as E:
+			print("Error in user_select_NIC()")
+			print(E)
+			
 	def show_network_drivers():
-		commandstr='hwinfo --netcard | grep -Ei "model\:|driver\:'
-		returncode = verbosity(commandstr)
-		return returncode
-
+		try:
+			commandstr='hwinfo --netcard | grep -Ei "model\:|driver\:'
+			returncode = verbosity(commandstr)
+			return returncode
+		except Exception as E:
+			print("Error in show_network_drivers()")
+			print(E)
+			return -1
 	def amon():
-		checkroot()
-		getNIC()
+		if !checkroot():
+			print("root required for amon!")
+			exit()
+		user_select_NIC()
 		list =  read_file_lines_as_list("./.netcard.info"):
 		if list:
 			selection = select_from_list(list)
