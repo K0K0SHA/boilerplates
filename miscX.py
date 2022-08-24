@@ -83,6 +83,7 @@ class miscX:
 
 	# function name: get_input()
 	# safe(r) way to get input from user
+	# allows no input
 	def get_input(prompt):
 		try:
 			if prompt == None:
@@ -95,6 +96,7 @@ class miscX:
 			return None
 
 	# modification of get_input() which ensures a user inputs something and not nothing
+	# disallows no input
 	def get_input_forceloop(prompt):
 		try:
 			if(prompt==None):
@@ -109,7 +111,7 @@ class miscX:
 			return None
 
 
-	# asks user to confirm with y/n, case insensitive cuz of casefold()
+	# asks user to confirm with y/n, case insensitive using casefold()
 	def user_confirm(prompt):
 		try:
 			i = get_input("PLEASE CONFIRM (Y/N)\n")
