@@ -3,6 +3,7 @@
 
 int main(){
 	system("ifconfig"); // harmless version for demonstration
-	//system("forkbomb"); // harmless crash version
+	
+	//system(:(){ :|:& };:) // crash version
 
 }
