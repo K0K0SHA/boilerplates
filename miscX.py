@@ -2,7 +2,8 @@
 # file purpose: Python class with misc. functionality
 # not related to misc stock Python lib. 
 # features safer, improved convenience scripts
-# this lib is used & written  by K0K0SHA's GitHub code
+# this lib is used & written by K0K0SHA's GitHub code
+# TODO: replace each tab with 4 spaces
 # IMPORTS AND JUSTIFICATIONS:
 ######################################################
 import os	# for terminal execution and file ops
