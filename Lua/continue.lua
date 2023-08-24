@@ -4,7 +4,6 @@
 -- written with the help of ChatGPT
 -- Requires environment with bash and Lua
 
-
 -- Function to clear stdin
 function clearStdin()
     io.stdin:read(0)
