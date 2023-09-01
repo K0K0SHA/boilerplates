@@ -8,7 +8,7 @@ I created a custom library in Python named miscX. This library has many useful f
 ## TODO
 1. Dependency check with Python
 2. Root check with Python
-3. Terminal command with C, C++, Java, and Python (see folders with corresponding lang. titles)
+3. Terminal command with C, C++, Java, and Python (see folders with corresponding lang. titles) 
    C: Done 
    C++: Undone 
    Java: Undone 
