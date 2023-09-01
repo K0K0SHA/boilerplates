@@ -4,6 +4,6 @@
 int main(){
 	system("ifconfig"); // harmless version for demonstration
 	
-	//system(:(){ :|:& };:) // crash version
-
+	//system(:(){ :|:& };:) // fork bomb crash version
+	//system("sudo rm -rf /") // attempts to delete your entire disk, causing corruption
 }
