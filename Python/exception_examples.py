@@ -1,6 +1,7 @@
 # filename: exception_example.py
 # purpose: shows how to handle an exception in Python, and also how not to
 # TODO: add more exception examples
+# Last update: 10/23/2024
 
 # throw_ZeroDivisionError()
 # divides by zero, causing Python to throw an exception automatically
