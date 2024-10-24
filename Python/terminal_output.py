@@ -1,4 +1,4 @@
-# file name: Terminal_Output.py
+# file name: terminal_output.py
 # author: K0K0$H@
 # purpose: demonstrate terminal I/O handling using subprocess in Python to search through output of 'ls'
 # Version: 1.0
