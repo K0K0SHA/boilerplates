@@ -2,7 +2,7 @@
 # author: K0K0$H@
 # purpose: demonstrate how argparse can be used to parse optional command-line variables for host (string) and port (int)
 ########## This function in its current state can be used on anything that requires a host and a port, such as netcat. 
-# Version: 1.1
+# Version: 1.3
 # Version History
 # 1.0     10/23/2024
 # 1.1     10/23/2024    added comments and notes, updated usage
