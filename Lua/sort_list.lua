@@ -1,32 +1,53 @@
 -- sort_list.lua
--- utility script to alphabetize a .list file
+-- Alphabetizes a list file and removes empty lines
 
+-- Get filename (from arg or user input)
+local path = arg[1]
+if not path then
+    io.write("Enter the path to the file: ")
+    path = io.read("*l")
+end
 
-io.write("Enter the path to the .list file: ")
-local path = io.read("*l")
-
--- Open file for reading
-local file = io.open(path, "r")
+-- Try to open for reading
+local file, err = io.open(path, "r")
 if not file then
-    print("Error: Could not open file at " .. path)
+    io.stderr:write("Error opening file: " .. err .. "\n")
     os.exit(1)
 end
 
--- Read all lines
+-- Read non-empty lines
 local lines = {}
 for line in file:lines() do
-    table.insert(lines, line)
+    if line:match("%S") then  -- only keep lines containing non-whitespace
+        table.insert(lines, line)
+    end
 end
 file:close()
 
--- Sort alphabetically
+-- Sort alphabetically (case-insensitive)
 table.sort(lines, function(a, b)
     return a:lower() < b:lower()
 end)
 
--- Write back to same file
-local file = io.open(path, "w")
+-- Try to open for writing
+file, err = io.open(path, "w")
+if not file then
+    io.stderr:write("Error writing file: " .. err .. "\n")
+    os.exit(1)
+end
+
+-- Write sorted, non-empty lines
 for _, line in ipairs(lines) do
     file:write(line, "\n")
 end
+
+-- Flush and check success
+local ok, writeErr = file:flush()
 file:close()
+
+if ok then
+    print("Successfully alphabetized and cleaned: " .. path)
+else
+    io.stderr:write("Error finalizing file: " .. tostring(writeErr) .. "\n")
+    os.exit(1)
+end
