@@ -1,3 +1,6 @@
+Use $(command) to pipe command output
+cd $(mktemp -d)
+
 Use && to execute several commands, one after the other eg.
 ifconfig && ./myscript.sh
 
